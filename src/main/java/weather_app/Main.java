@@ -10,6 +10,17 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
+        WeatherService weatherService = new WeatherService(
+
+                //to jest wziete z adresu apixu http://api.apixu.com/v1/current.json?key=eeea89e848f743fbb8d155428180709&q=Warsaw
+                //a adres jest wziety z https://www.apixu.com/my/
+
+                "http://api.apixu.com/v1/current.json",
+                "eeea89e848f743fbb8d155428180709"
+        );
+
+        weatherService.getCityWeather("warsaw");
+
         List<Weather> weatherList = generateWeatherList();
 
 
@@ -21,7 +32,7 @@ public class Main {
                 "Slonecznie",
                 54.54,
                 21.23);
-//zapis danych do pliku
+        //zapis danych do pliku
         ObjectMapper objectMapper = new ObjectMapper();
         //przyjmuje obiekt file ktory przechowuje adres do pliku oraz obiekt ktory chemy zapisać
         File filename = new File("weather.json");
