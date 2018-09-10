@@ -7,9 +7,8 @@ public class Weather {
     private double temperature;
     private double feelslikeC;
     private String conditionText;
-    //wysokosc i szczerokosc geograficzna
-    private double lat;
-    private double lon;
+    private double lat; //wysokosc geograficzna
+    private double lon; //szerokosc geograficzna
 
     public Weather() {
     }
@@ -78,5 +77,18 @@ public class Weather {
 
     public void setLon(double lon) {
         this.lon = lon;
+    }
+
+    @Override
+    public String toString() {
+        return "Weather{" +
+                "city='" + city + '\'' +
+                ", iconUrl='" + iconUrl + '\'' +
+                ", temperature=" + temperature +
+                ", feelslikeC=" + feelslikeC +
+                ", conditionText='" + conditionText + '\'' +
+                ", lat=" + lat +
+                ", lon=" + lon +
+                '}';
     }
 }

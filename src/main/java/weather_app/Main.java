@@ -20,6 +20,7 @@ public class Main {
         );
 
         weatherService.getCityWeather("warsaw");
+        System.out.println("---------");
 
         List<Weather> weatherList = generateWeatherList();
 
