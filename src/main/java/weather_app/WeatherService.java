@@ -41,8 +41,9 @@ public class WeatherService {
         weather.setConditionText(jsonObject.getJSONObject("current").getJSONObject("condition").get("text").toString());
         weather.setLat((Double) jsonObject.getJSONObject("location").get("lat"));
         weather.setLon((Double) jsonObject.getJSONObject("location").get("lon"));
-        System.out.println(weather);
+        //System.out.println(weather);
 
         return weather;
     }
+
 }

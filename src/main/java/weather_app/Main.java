@@ -4,23 +4,31 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.rmi.ConnectIOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class Main {
     public static void main(String[] args) {
 
-        WeatherService weatherService = new WeatherService(
 
-                //to jest wziete z adresu apixu http://api.apixu.com/v1/current.json?key=eeea89e848f743fbb8d155428180709&q=Warsaw
-                //a adres jest wziety z https://www.apixu.com/my/
+//        WeatherService weatherService = new WeatherService(
+//
+//                //to jest wziete z adresu apixu http://api.apixu.com/v1/current.json?key=eeea89e848f743fbb8d155428180709&q=Warsaw
+//                //a adres jest wziety z https://www.apixu.com/my/
+//
+//                "http://api.apixu.com/v1/current.json",
+//                "eeea89e848f743fbb8d155428180709"
+//        );
 
-                "http://api.apixu.com/v1/current.json",
-                "eeea89e848f743fbb8d155428180709"
-        );
+        //zamiana tego co jest wyzej pisane z reki na zaczytywanie z pliku
+
+        AppProperties appProperties = Config.loadProperties();
+        WeatherService weatherService = new WeatherService(appProperties.getUrl(), appProperties.getKey());
+
 
         weatherService.getCityWeather("warsaw");
-        System.out.println("---------");
 
         List<Weather> weatherList = generateWeatherList();
 
@@ -60,6 +68,7 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Config.saveConfiguration();
     }
 
     public static ArrayList<Weather> generateWeatherList() {
